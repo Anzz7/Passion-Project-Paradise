@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passion Project Paradise — Where Ideas Come Alive</title>
+  <meta name="description" content="Your personal creative companion for brainstorming, learning, and building passion projects from spark to reality." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<!-- Reminder banner -->
+<div class="reminder-banner" id="reminder-banner">
+  <span>⏰</span>
+  <span class="reminder-text"></span>
+  <a href="brainstorm.html">Pick it up →</a>
+  <button onclick="document.getElementById('reminder-banner').classList.remove('show')" style="margin-left:8px;color:#fff;opacity:.7">✕</button>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo">
+    <div class="logo-mark">PPP</div>
+    <span class="logo-text"><span>Passion</span> Project Paradise</span>
+  </div>
+  <nav class="nav-links">
+    <a class="nav-link" href="brainstorm.html" data-page="brainstorm">Ideas Hub</a>
+    <a class="nav-link" href="learning.html" data-page="learning">Learning Hub</a>
+    <a class="nav-link" href="projects.html" data-page="projects">Project Plans</a>
+  </nav>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="window.location.href='settings.html'" title="Settings">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Main home -->
+<main class="home-wrap">
+  <div class="home-inner">
+    <div class="home-eyebrow animate-fade">Your Creative Companion</div>
+
+    <h1 class="home-greeting animate-up delay-1" id="greeting-text">Loading...</h1>
+
+    <p class="home-subtext animate-up delay-2" id="subtext">
+      <span id="typed-text"></span><span class="cursor-blink"></span>
+    </p>
+
+    <!-- Smart input -->
+    <div class="smart-input-wrap animate-up delay-3">
+      <input
+        type="text"
+        class="smart-input"
+        id="smart-input"
+        placeholder="What's on your mind? Brainstorm · Develop · Learn · Plan..."
+        autocomplete="off"
+      />
+      <button class="smart-input-btn" id="smart-submit" aria-label="Submit">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+      <div class="smart-suggestions" id="smart-suggestions"></div>
+    </div>
+
+    <!-- Hub cards -->
+    <div class="hub-grid animate-up delay-4">
+      <div class="hub-card" onclick="window.location.href='brainstorm.html'">
+        <div class="hub-icon">💡</div>
+        <div class="hub-title">Ideas Hub</div>
+        <div class="hub-desc">Capture, explore, and develop your ideas with guided questions.</div>
+      </div>
+      <div class="hub-card" onclick="window.location.href='learning.html'">
+        <div class="hub-icon">📚</div>
+        <div class="hub-title">Learning Hub</div>
+        <div class="hub-desc">Find tutorials and courses to build the skills your idea needs.</div>
+      </div>
+      <div class="hub-card" onclick="window.location.href='projects.html'">
+        <div class="hub-icon">🗓️</div>
+        <div class="hub-title">Project Plans</div>
+        <div class="hub-desc">Turn your idea into an AI-generated study plan and schedule.</div>
+      </div>
+    </div>
+
+    <!-- Daily inspiration (ZenQuotes API) -->
+    <div class="quote-card animate-up delay-5" id="quote-card" style="display:none">
+      <p class="quote-text" id="quote-text"></p>
+      <p class="quote-author" id="quote-author"></p>
+      <p class="quote-hint">Tap for a new quote</p>
+    </div>
+
+    <div class="home-tagline animate-fade delay-5">
+      <div class="tagline-dot"></div>
+      <span>An idea is always brewing somewhere</span>
+      <div class="tagline-dot"></div>
+    </div>
+  </div>
+</main>
+
+<!-- Feature tour modal -->
+<div class="modal-overlay" id="feature-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeFeatureModal()">✕</button>
+    <p class="stage-label">What we offer</p>
+    <h2 class="modal-title">Your Paradise, Explored</h2>
+    <p class="modal-subtitle" id="feature-context">Here's everything Passion Project Paradise can do for you:</p>
+    <div class="feature-grid">
+      <div class="feature-tile" onclick="window.location.href='brainstorm.html'">
+        <div class="feature-tile-icon">💡</div>
+        <div class="feature-tile-title">Ideas Hub</div>
+        <div class="feature-tile-desc">A focused space to brainstorm one idea at a time with guiding questions that deepen your thinking.</div>
+      </div>
+      <div class="feature-tile" onclick="window.location.href='learning.html'">
+        <div class="feature-tile-icon">📺</div>
+        <div class="feature-tile-title">Learning Hub</div>
+        <div class="feature-tile-desc">Search YouTube tutorials by topic, save courses, and track your learning progress.</div>
+      </div>
+      <div class="feature-tile" onclick="window.location.href='projects.html'">
+        <div class="feature-tile-icon">🗓️</div>
+        <div class="feature-tile-title">Project Plans</div>
+        <div class="feature-tile-desc">AI builds you a personalized week-by-week syllabus based on your goal, schedule, and skill level.</div>
+      </div>
+      <div class="feature-tile" onclick="window.location.href='settings.html'">
+        <div class="feature-tile-icon">⚙️</div>
+        <div class="feature-tile-title">Settings</div>
+        <div class="feature-tile-desc">Configure your API keys, notification preferences, and manage your saved data.</div>
+      </div>
+    </div>
+    <hr class="divider" style="margin: 20px 0 24px" />
+    <p class="label">Don't see what you need? Suggest a feature:</p>
+    <div style="display:flex;gap:10px">
+      <input type="text" class="input" id="suggestion-input" placeholder="e.g., a mood board builder..." />
+      <button class="btn btn-primary" onclick="submitSuggestion()">Send</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

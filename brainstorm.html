@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ideas Hub — Passion Project Paradise</title>
+  <meta name="description" content="A focused space to brainstorm and document your passion project ideas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<!-- Reminder banner -->
+<div class="reminder-banner" id="reminder-banner">
+  <span>⏰</span>
+  <span class="reminder-text"></span>
+  <a href="brainstorm.html">Pick it up →</a>
+  <button onclick="document.getElementById('reminder-banner').classList.remove('show')" style="margin-left:8px;color:#fff;opacity:.7">✕</button>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer">
+    <div class="logo-mark">PPP</div>
+    <span class="logo-text"><span>Passion</span> Project Paradise</span>
+  </div>
+  <nav class="nav-links">
+    <a class="nav-link active" href="brainstorm.html" data-page="brainstorm">Ideas Hub</a>
+    <a class="nav-link" href="learning.html" data-page="learning">Learning Hub</a>
+    <a class="nav-link" href="projects.html" data-page="projects">Project Plans</a>
+  </nav>
+  <div class="header-actions">
+    <button class="btn btn-secondary btn-sm" id="history-toggle-btn" onclick="toggleHistory()">
+      📂 My Ideas
+    </button>
+    <button class="icon-btn" onclick="window.location.href='settings.html'">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- History Sidebar -->
+<aside class="brainstorm-sidebar" id="history-sidebar">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+    <h3 style="font-size:1.1rem">My Brainstorms</h3>
+    <button class="icon-btn" onclick="toggleHistory()" style="font-size:1rem">✕</button>
+  </div>
+  <button class="btn btn-primary btn-sm" style="width:100%;margin-bottom:16px" onclick="startNewSession()">
+    + New Idea
+  </button>
+  <div id="history-list">
+    <div class="empty-state" style="padding:40px 0">
+      <div class="empty-state-icon">💭</div>
+      <div class="empty-state-title">Nothing yet</div>
+      <p>Your brainstorm history will appear here.</p>
+    </div>
+  </div>
+</aside>
+
+<!-- Sidebar overlay -->
+<div id="sidebar-overlay" style="position:fixed;inset:0;z-index:89;background:rgba(0,0,0,0.3);display:none;backdrop-filter:blur(2px)" onclick="toggleHistory()"></div>
+
+<!-- Main content -->
+<div class="brainstorm-layout">
+  <main class="brainstorm-main" id="brainstorm-main">
+
+    <!-- Stage: Name your idea -->
+    <div class="brainstorm-card" id="stage-name" style="display:none">
+      <div class="brainstorm-header">
+        <div style="flex:1">
+          <p class="stage-label">Ideas Hub</p>
+          <p style="font-size:0.85rem;color:var(--text-secondary)">A space to think freely.</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="window.location.href='index.html'">← Home</button>
+      </div>
+      <div class="brainstorm-body">
+        <div class="brainstorm-stage">
+          <p class="stage-label">Let's begin</p>
+          <h2 class="stage-question">Every great thing starts with a name. What's your idea?</h2>
+          <p class="stage-hint">Don't overthink it — just give it a working title. You can always rename it.</p>
+          <input type="text" class="input" id="idea-name-input" placeholder="e.g., A podcast about local food stories..." style="font-size:1.05rem;padding:16px 20px" maxlength="100" />
+          <p style="font-size:0.8rem;color:var(--text-tertiary);margin-top:8px" id="name-char-count">0 / 100</p>
+        </div>
+      </div>
+      <div class="brainstorm-actions">
+        <p class="small muted">Press Enter or click Next</p>
+        <button class="btn btn-primary" id="name-next-btn">Next →</button>
+      </div>
+    </div>
+
+    <!-- Stage: Guided questions conversation -->
+    <div class="brainstorm-card" id="stage-questions" style="display:none">
+      <div class="brainstorm-header">
+        <div class="stage-dots" id="stage-dots"></div>
+        <span class="small muted" id="progress-label">1 / 8</span>
+      </div>
+      <div class="brainstorm-body">
+        <div class="brainstorm-stage" id="question-stage">
+          <p class="stage-label" id="q-category">Thinking Deeper</p>
+          <h2 class="stage-question" id="q-text">Loading question...</h2>
+          <p class="stage-hint" id="q-hint"></p>
+          <textarea class="textarea" id="q-answer" placeholder="Write freely — there are no wrong answers here..." style="min-height:140px"></textarea>
+          <p style="font-size:0.8rem;color:var(--text-tertiary);margin-top:6px" id="autosave-indicator">Autosaved ✓</p>
+        </div>
+      </div>
+      <div class="brainstorm-actions">
+        <button class="btn btn-ghost" id="q-back-btn">← Back</button>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="btn btn-secondary btn-sm" id="q-skip-btn">Skip</button>
+          <button class="btn btn-primary" id="q-next-btn">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage: Free notes -->
+    <div class="brainstorm-card" id="stage-notes" style="display:none">
+      <div class="brainstorm-header">
+        <div style="flex:1">
+          <p class="stage-label">Open Notes</p>
+          <p style="font-size:0.85rem;color:var(--text-secondary)">Dump everything in your head.</p>
+        </div>
+        <span class="badge badge-red" id="notes-idea-name">Your idea</span>
+      </div>
+      <div class="brainstorm-body">
+        <div class="brainstorm-stage">
+          <h2 class="stage-question">Anything else? This is your free space.</h2>
+          <p class="stage-hint">Resources, references, people to call, random connections — no filters.</p>
+          <textarea class="textarea" id="free-notes" placeholder="Brain dump here..." style="min-height:200px"></textarea>
+        </div>
+      </div>
+      <div class="brainstorm-actions">
+        <button class="btn btn-ghost" onclick="goToQuestions()">← Back to questions</button>
+        <button class="btn btn-primary" onclick="completeSession()">Complete brainstorm ✓</button>
+      </div>
+    </div>
+
+    <!-- Stage: Completion -->
+    <div class="brainstorm-card" id="stage-complete" style="display:none">
+      <div class="brainstorm-body" style="padding:40px 32px">
+        <div class="completion-screen">
+          <div class="completion-icon float">🚀</div>
+          <h2 class="completion-title">Beautiful work.</h2>
+          <p class="completion-subtitle" id="completion-msg">Your idea is taking shape. What's next?</p>
+          <div class="completion-actions">
+            <button class="btn btn-primary btn-lg" onclick="developIdea()">
+              🗓️ Build a project plan for this
+            </button>
+            <button class="btn btn-secondary" onclick="findResources()">
+              📚 Find learning resources
+            </button>
+            <button class="btn btn-ghost" onclick="saveAndHome()">
+              Save &amp; return home
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Landing / welcome state -->
+    <div id="stage-welcome" class="brainstorm-card" style="max-width:640px;width:100%">
+      <div class="brainstorm-body" style="padding:48px 36px;text-align:center">
+        <div style="font-size:3rem;margin-bottom:20px" class="float">💡</div>
+        <h2 class="stage-question" style="margin-bottom:12px" id="welcome-greeting">Ready to think?</h2>
+        <p class="stage-hint" style="margin-bottom:32px;font-size:1rem">The Ideas Hub is your private thinking space. No judgment, no pressure — just you and your idea.</p>
+        <button class="btn btn-primary btn-lg" onclick="startNewSession()" style="margin:0 auto">
+          + Start a new brainstorm
+        </button>
+        <p class="small muted" style="margin-top:16px">Or open <strong>My Ideas</strong> to revisit past sessions.</p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- View idea modal -->
+<div class="modal-overlay" id="view-idea-modal">
+  <div class="modal" style="max-width:680px">
+    <button class="modal-close" onclick="document.getElementById('view-idea-modal').classList.remove('open')">✕</button>
+    <p class="stage-label" id="view-idea-date"></p>
+    <h2 class="modal-title" id="view-idea-title"></h2>
+    <hr class="divider" />
+    <div id="view-idea-body" style="max-height:60vh;overflow-y:auto"></div>
+    <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
+      <button class="btn btn-primary btn-sm" id="view-develop-btn">🗓️ Build a plan for this</button>
+      <button class="btn btn-secondary btn-sm" id="view-learn-btn">📚 Find resources</button>
+      <button class="btn btn-danger btn-sm" id="view-delete-btn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/brainstorm.js"></script>
+</body>
+</html>
